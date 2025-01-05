@@ -1,0 +1,39 @@
+name: Deploy web application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: docker build -t vinaybabu3962/work-order-management-web-service .
+
+      - name: Publish image to Docker Hub
+        run: docker push vinaybabu3962/work-order-management-web-service:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull Image from Docker Hub
+        run: docker pull vinaybabu3962/work-order-management-web-service:latest
+
+      - name: Delete old container if exists
+        run: docker rm -f nodejs-app-container || true
+
+      - name: Run Docker container
+        run: docker run -d -p 4200:80 --name nodejs-app-container vinaybabu3962/work-order-management-web-service
+      
+      - name: List Docker images
+        run: docker images
+

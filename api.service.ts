@@ -6,12 +6,13 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Environment  } from './src/app/environment/env';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:3000/api'; // Centralized base URL
+  private baseUrl = Environment.baseUrl; // Centralized base URL
 
   constructor(private http: HttpClient) {}
 
