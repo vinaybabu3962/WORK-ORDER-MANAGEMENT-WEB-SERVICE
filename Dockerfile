@@ -17,7 +17,7 @@ WORKDIR /usr/share/nginx/html
 
 RUN rm -rf *
 
-COPY --from-build /app/dist/angular-app/browser .
+COPY --from=build /app/dist/contract-management-web-service/browser .
 
 EXPOSE 80
 
