@@ -1,0 +1,84 @@
+/* Fixed header */
+.dashboard-header {
+    width: 100%;
+    background-color: #007bff; /* Blue background */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Keep the header on top */
+}
+
+/* Header title */
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Logout and Back to Dashboard buttons */
+.logout-button, .back-to-dashboard-button {
+    background-color: #f8f9fa; /* Light background */
+    color: #007bff; /* Blue text color */
+    padding: 8px 16px;
+    border: 1px solid #007bff; /* Blue border */
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure both buttons have the same style on hover */
+.logout-button:hover, .back-to-dashboard-button:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text on hover */
+}
+
+/* Container to avoid content being hidden under fixed header */
+.container {
+    margin-top: 80px; /* Adjust the content to avoid being hidden under the fixed header */
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Right align the 'Generate Bills' button */
+.generate-bills-btn {
+    float: right;
+    margin-right: 20px; /* Add margin to the right to space it out */
+    margin-top: 20px; /* Add margin to top for spacing */
+    margin-bottom: 20px;
+}
+
+/* Optional: If you want to ensure that the table is well-spaced from the top */
+.table {
+    margin-top: 20px;
+}

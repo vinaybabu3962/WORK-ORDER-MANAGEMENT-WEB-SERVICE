@@ -1,0 +1,132 @@
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+  <button class="back-to-dashboard-button btn btn-secondary" (click)="goBackToDashboard()">Back to Dashboard</button>
+  <h1 class="header-title text-center flex-grow-1">Work Order Management System</h1>
+  <button class="logout-button btn btn-danger" (click)="logout()">Logout</button>
+</div>
+
+<div class="container mt-5">
+  <!-- Add Work Order Button -->
+  <div class="mb-4">
+    <button type="button" class="btn btn-primary btn-add-work-order" (click)="openModal(modalTemplate)">
+      Add Work Order
+    </button>
+  </div>
+
+  <!-- Table to Display Work Orders -->
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Contractor</th>
+        <th scope="col">Payment Terms</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Locations (Rate & Quantity)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let workOrder of workOrders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ workOrder.contractorId.name }}</td> <!-- Assuming you populated contractor name -->
+        <td>{{ workOrder.paymentTerms }}</td>
+        <td>{{ workOrder.dueDate | date }}</td> <!-- Date formatting -->
+        <td>
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Rate</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let loc of workOrder.locations">
+                <td>{{ loc.locationId.name }} <span *ngIf="loc.locationId.state">({{ loc.locationId.state }})</span></td>
+                <td>{{ loc.rate }}</td>
+                <td>{{ loc.quantity }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal Template for Adding Work Order -->
+  <ng-template #modalTemplate let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Create Work Order</h5>
+      <button type="button" class="btn-close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="contractor">Contractor</label>
+          <select class="form-control" [(ngModel)]="newWorkOrder.contractor" name="contractor" required>
+            <option *ngFor="let contractor of contractors" [value]="contractor._id">
+              {{ contractor.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="paymentTerms">Payment Terms</label>
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="newWorkOrder.paymentTerms"
+            name="paymentTerms"
+            required
+            placeholder="Enter payment terms"
+          />
+        </div>
+        <div class="form-group">
+          <label for="dueDate">Due Date</label>
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="newWorkOrder.dueDate"
+            name="dueDate"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="locations">Locations</label>
+          <select class="form-control" [(ngModel)]="selectedLocation" name="location" required>
+            <option *ngFor="let location of locations" [ngValue]="location">{{ location.name }}</option>
+          </select>
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary mt-2"
+          (click)="addLocationToWorkOrder()"
+          [disabled]="!selectedLocation"
+        >
+          Add Location
+        </button>
+
+        <div class="mt-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Rate</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let location of newWorkOrder.locations">
+                <td>{{ location.locationName }}</td>
+                <td><input type="number" [(ngModel)]="location.rate" class="form-control" name="rate" /></td>
+                <td><input type="number" [(ngModel)]="location.quantity" class="form-control" name="quantity" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      <button type="button" class="btn btn-primary" (click)="saveWorkOrder()">Save Work Order</button>
+    </div>
+  </ng-template>
+</div>

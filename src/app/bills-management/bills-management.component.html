@@ -1,0 +1,29 @@
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <button class="btn btn-info" (click)="goBackToDashboard()">Back to Dashboard</button> <!-- Back to Dashboard button on the left -->
+    <h1 class="header-title text-center flex-grow-1">Work Order Management System</h1> <!-- Centered Header Title -->
+    <button class="logout-button" (click)="logout()">Logout</button> <!-- Logout button on the right -->
+</div>
+
+<div class="container mt-5 pt-5">
+    <button class="btn btn-success generate-bills-btn" (click)="generateBills()">Generate Bills</button> <!-- Generate Bills Button aligned to the right -->
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Bill ID</th>
+                <th>Contractor Name</th>
+                <th>Total Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bill of bills">
+                <td>{{ bill.billNumber }}</td>
+                <td>{{ bill.contractor.name }}</td>
+                <td>{{ bill.totalAmount }}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="getBillPdf(bill._id,bill.billNumber)">Get PDF</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

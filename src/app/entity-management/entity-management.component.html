@@ -1,0 +1,154 @@
+<!-- Dashboard Header -->
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <button class="logout-button btn btn-secondary" (click)="goBackToDashboard()">Back to Dashboard</button>
+    <h1 class="header-title text-center flex-grow-1">Work Order Management System</h1>
+    <button class="logout-button btn btn-danger" (click)="logout()">Logout</button>
+</div>
+
+<div class="content">
+    <div class="container mt-5">
+        <h2 class="text-center">Entity and Location Management</h2>
+        <p class="text-center">Manage entities and locations</p>
+
+        <!-- Entities Section -->
+        <div class="d-flex justify-content-between align-items-center">
+            <h4>Entities</h4>
+            <button class="btn btn-success" (click)="openEntityModal(entityModal)">
+                Add Entity
+            </button>
+        </div>
+
+        <div class="table-responsive mt-3">
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th> <!-- Serial Number Column -->
+                        <th>Entity Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let entity of entities; let i = index">
+                        <td>{{ i + 1 }}</td> <!-- Serial Number -->
+                        <td>{{ entity.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Locations Section -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <h4>Locations</h4>
+            <button class="btn btn-success" (click)="openLocationModal(locationModal)">
+                Add Location
+            </button>
+        </div>
+
+        <div class="table-responsive mt-3">
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th> <!-- Serial Number Column -->
+                        <th>Location Name</th>
+                        <th>Entity</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let location of locations; let i = index">
+                        <td>{{ i + 1 }}</td> <!-- Serial Number -->
+                        <td>{{ location.name }}</td>
+                        <td>{{ location.entity.name }}</td>
+                        <td>{{ location.status }}</td>
+                        <td>
+                            <button *ngIf="location.status !== 'Completed'" class="btn btn-primary" (click)="markAsComplete(location)">
+                                Mark As Complete
+                            </button>
+                        </td>                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add Entity Modal -->
+<ng-template #entityModal let-modalRef="modalRef">
+    <div class="modal-header">
+        <h5 class="modal-title">Add New Entity</h5>
+        <button type="button" class="btn-close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="entityName" class="form-label">Entity Name:</label>
+            <input
+                type="text"
+                id="entityName"
+                class="form-control"
+                [(ngModel)]="entityName"
+                placeholder="Enter entity name"
+            />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addEntity(modalRef)">Add Entity</button>
+    </div>
+</ng-template>
+
+<!-- Add Location Modal -->
+<ng-template #locationModal let-modalRef="modalRef">
+    <div class="modal-header">
+        <h5 class="modal-title">Add New Location</h5>
+        <button type="button" class="btn-close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="locationName" class="form-label">Location Name:</label>
+            <input
+                type="text"
+                id="locationName"
+                class="form-control"
+                [(ngModel)]="locationName"
+                placeholder="Enter location name"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="selectEntity" class="form-label">Select Entity:</label>
+            <select id="selectEntity" class="form-control" [(ngModel)]="selectedEntity">
+                <option *ngFor="let entity of entities" [value]="entity._id">{{ entity.name }}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="locationStatus" class="form-label">Location Status:</label>
+            <select id="locationStatus" class="form-control" disabled [(ngModel)]="locationStatus">
+                <option value="Ready">Ready</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addLocation(modalRef)">Add Location</button>
+    </div>
+</ng-template>
+
+<!-- Assign Contractor Modal -->
+<ng-template #contractorModal let-modalRef="modalRef">
+    <div class="modal-header">
+        <h5 class="modal-title">Assign Contractor</h5>
+        <button type="button" class="btn-close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+        <label for="contractorSelect">Select Contractor:</label>
+        <select id="contractorSelect" class="form-control" [(ngModel)]="selectedContractor">
+            <option *ngFor="let contractor of contractors" [value]="contractor._id">
+                {{ contractor.name }}
+            </option>
+        </select>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="assignContractor(modalRef)">Assign</button>
+    </div>
+</ng-template>
