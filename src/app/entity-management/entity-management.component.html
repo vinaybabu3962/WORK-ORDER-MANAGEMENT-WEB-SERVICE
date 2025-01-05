@@ -61,7 +61,7 @@
                         <td>{{ location.entity.name }}</td>
                         <td>{{ location.status }}</td>
                         <td>
-                            <button *ngIf="location.status !== 'Completed'" class="btn btn-primary" (click)="markAsComplete(location)">
+                            <button *ngIf="location.status !== 'Completed'" class="btn btn-primary" (click)="fetchContractorsBasedOnLocation(location._id); markAsComplete(location)">
                                 Mark As Complete
                             </button>
                         </td>                        

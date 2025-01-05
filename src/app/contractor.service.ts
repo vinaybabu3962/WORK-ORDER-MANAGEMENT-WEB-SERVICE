@@ -30,4 +30,7 @@ export class ContractorService {
   deleteContractor(id: any) : Observable<any> {
     return this.apiService.delete<any>('/contractors/deleteContractor', id);  // Use the '/add-contractor' endpoint
   }
+  getContractorsByLocation(id: any): Observable<any> {
+    return this.apiService.get<any>(`/contractors/getContractorsByLocation/${id}`); 
+  }
 }

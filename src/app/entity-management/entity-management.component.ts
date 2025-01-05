@@ -1,5 +1,9 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MdbModalService, MdbModalRef, MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import {
+  MdbModalService,
+  MdbModalRef,
+  MdbModalModule,
+} from 'mdb-angular-ui-kit/modal';
 import { EntityService, Entity, Location } from './../entity.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -15,7 +19,8 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule, CommonModule, MdbModalModule],
 })
 export class EntityManagementComponent implements OnInit {
-  @ViewChild('contractorModal', { static: true }) contractorModal!: TemplateRef<any>;
+  @ViewChild('contractorModal', { static: true })
+  contractorModal!: TemplateRef<any>;
 
   entities: Entity[] = [];
   locations: Location[] = [];
@@ -42,22 +47,44 @@ export class EntityManagementComponent implements OnInit {
 
   fetchEntities(): void {
     this.entityService.getEntities().subscribe(
-      (data) => { this.entities = data; },
-      (error) => { console.error('Error fetching entities:', error); }
+      (data) => {
+        this.entities = data;
+      },
+      (error) => {
+        console.error('Error fetching entities:', error);
+      }
     );
   }
 
   fetchLocations(): void {
     this.entityService.getLocations().subscribe(
-      (data) => { this.locations = data; },
-      (error) => { console.error('Error fetching locations:', error); }
+      (data) => {
+        this.locations = data;
+      },
+      (error) => {
+        console.error('Error fetching locations:', error);
+      }
     );
   }
 
   fetchContractors(): void {
     this.contractorService.getContractors().subscribe(
-      (data) => { this.contractors = data; },
-      (error) => { console.error('Error fetching contractors:', error); }
+      (data) => {
+        this.contractors = data;
+      },
+      (error) => {
+        console.error('Error fetching contractors:', error);
+      }
+    );
+  }
+  fetchContractorsBasedOnLocation(locationId: String): void {
+    this.contractorService.getContractorsByLocation(locationId).subscribe(
+      (data) => {
+        this.contractors = data;
+      },
+      (error) => {
+        console.error('Error fetching contractors:', error);
+      }
     );
   }
 
@@ -80,7 +107,9 @@ export class EntityManagementComponent implements OnInit {
 
   assignContractorToLocation(location: Location): void {
     location.status = 'Completed';
-    console.log(`Location ${location.name} marked as complete with contractor ID: ${this.selectedContractor}`);
+    console.log(
+      `Location ${location.name} marked as complete with contractor ID: ${this.selectedContractor}`
+    );
     this.entityService.updateLocation(location).subscribe(
       () => {
         this.fetchLocations();
@@ -88,7 +117,9 @@ export class EntityManagementComponent implements OnInit {
         this.selectedEntity = '';
         this.locationStatus = 'Ready';
       },
-      (error) => { console.error('Error adding location:', error); }
+      (error) => {
+        console.error('Error adding location:', error);
+      }
     );
   }
 
@@ -120,7 +151,9 @@ export class EntityManagementComponent implements OnInit {
           this.entityName = '';
           modalRef.close();
         },
-        (error) => { console.error('Error adding entity:', error); }
+        (error) => {
+          console.error('Error adding entity:', error);
+        }
       );
     } else {
       alert('Please enter a valid entity name');
@@ -143,7 +176,9 @@ export class EntityManagementComponent implements OnInit {
           this.locationStatus = 'Ready';
           modalRef.close();
         },
-        (error) => { console.error('Error adding location:', error); }
+        (error) => {
+          console.error('Error adding location:', error);
+        }
       );
     } else {
       alert('Please fill out all fields');

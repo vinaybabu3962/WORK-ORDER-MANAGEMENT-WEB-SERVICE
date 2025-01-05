@@ -12,8 +12,8 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]  },
-    { path: 'contractors', component: ContractorDashboardComponent },
-    { path: 'entity-management', component: EntityManagementComponent },
-    { path: 'work-order' , component: WorkOrderComponent},
-    { path: 'bills-management' , component: BillsManagementComponent }
+    { path: 'contractors', component: ContractorDashboardComponent , canActivate: [AuthGuard] },
+    { path: 'entity-management', component: EntityManagementComponent, canActivate: [AuthGuard]  },
+    { path: 'work-order' , component: WorkOrderComponent, canActivate: [AuthGuard] },
+    { path: 'bills-management' , component: BillsManagementComponent, canActivate: [AuthGuard]  }
 ];
