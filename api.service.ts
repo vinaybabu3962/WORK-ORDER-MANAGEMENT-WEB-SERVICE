@@ -39,6 +39,7 @@ export class ApiService {
 
   // Method to generate full API URL by appending path to base URL
   private buildUrl(endpoint: string): string {
+    
     return `${this.baseUrl}${endpoint}`; // Combines base URL and endpoint path
   }
 
