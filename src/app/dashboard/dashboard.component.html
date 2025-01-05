@@ -1,0 +1,32 @@
+<div class="dashboard-header">
+    <h1 class="header-title">Work Order Management System</h1>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
+  
+  <div class="content">
+    <!-- Add your content here -->
+    <p>Welcome to the dashboard!</p>
+  
+    <!-- Tile Section -->
+    <div class="tiles">
+        <div class="tile tile-contractors">
+            <h2><a routerLink="/contractors" class="text-white">Contractors Dashboard</a></h2>
+            <p>Manage contractors and their details</p>
+        </div>
+        <div class="tile tile-pending">
+            <h2><a routerLink="/entity-management" class="text-white">Entity and Location Management</a></h2>
+            <p>Manage Entitis and their Locations</p>
+
+        </div>
+
+      <div class="tile tile-creation">
+        <h2><a routerLink="/work-order" class="text-white">Work Order Creation</a></h2>
+        <p>Create new work orders</p>
+      </div>
+      <div class="tile tile-reports">
+        <h2><a routerLink="/bills-management" class="text-white">Manage Bills</a></h2>
+        <p>Generate and manage Bills</p>
+      </div>
+    </div>
+  </div>
+  

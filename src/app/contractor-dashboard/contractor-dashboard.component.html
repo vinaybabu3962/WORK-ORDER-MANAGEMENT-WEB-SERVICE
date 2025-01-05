@@ -1,0 +1,69 @@
+<!-- Dashboard Header -->
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <button class="btn btn-info" (click)="goBackToDashboard()">Back to Dashboard</button> <!-- Back to Dashboard button on the left -->
+    <h1 class="header-title text-center flex-grow-1">Work Order Management System</h1> <!-- Centered Header Title -->
+    <button class="logout-button" (click)="logout()">Logout</button> <!-- Logout button on the right -->
+</div>
+
+<div class="content">
+    <div class="container mt-5">
+        <h2 class="text-center">Contractors Dashboard</h2>
+        <p class="text-center">Manage contractors and their details</p>
+
+        <!-- Button to open modal -->
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-success" (click)="openModal(addContractorModal)">
+                Add Contractor
+            </button>
+        </div>
+
+        <!-- Contractors Table -->
+        <div class="table-responsive">
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th> <!-- Serial Number Column -->
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let contractor of contractors; let i = index">
+                        <td>{{ i + 1 }}</td> <!-- Serial Number -->
+                        <td>{{ contractor.name }}</td>
+                        <td>{{ contractor.phone }}</td>
+                        <td>
+                            <!-- Remove Edit button as requested -->
+                            <button class="btn btn-danger btn-sm" (click)="deleteContractor(contractor._id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Adding Contractor -->
+<ng-template #addContractorModal let-modalRef="modalRef">
+    <div class="modal-header">
+        <h5 class="modal-title">Add New Contractor</h5>
+        <button type="button" class="btn-close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="addContractor(modalRef)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" class="form-control" id="phone" [(ngModel)]="phone" name="phone" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Close</button>
+                <button type="submit" class="btn btn-primary">Add Contractor</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

@@ -1,0 +1,299 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply full height and width for html and body */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+/* Background gradient */
+body {
+    background: linear-gradient(to bottom, #a8e063, #56ccf2); /* Light green to blue gradient */
+    display: flex;
+    flex-direction: column;  /* Stack the header and content vertically */
+    font-family: Arial, sans-serif;
+}
+
+/* Fixed header */
+.dashboard-header {
+    width: 100%;
+    background-color: #007bff; /* Blue background */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Keep the header on top */
+}
+
+/* Header title */
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Logout and Back to Dashboard buttons */
+.logout-button, .back-to-dashboard-button {
+    background-color: #f8f9fa; /* Light background */
+    color: #007bff; /* Blue text color */
+    padding: 8px 16px;
+    border: 1px solid #007bff; /* Blue border */
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure both buttons have the same style on hover */
+.logout-button:hover, .back-to-dashboard-button:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text on hover */
+}
+
+/* Content section */
+.content {
+    flex-grow: 1; /* Take up remaining space */
+    margin-top: 80px; /* Offset the content below the header */
+    padding: 20px;
+    background-color: transparent;
+    overflow-y: auto; /* Scroll if content overflows */
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Title section */
+.container h2 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.container p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Add Contractor Button */
+.btn-success {
+    background-color: #28a745; /* Green color */
+    border-color: #28a745;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-success i {
+    margin-right: 8px;
+}
+
+/* Table styling */
+.table {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.table-light {
+    background-color: #f8f9fa; /* Light gray background for the table */
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+.table .btn {
+    margin: 0 5px;
+}
+
+/* Add Contractor Modal */
+.modal-header {
+    background-color: #007bff;
+    color: white;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6c757d;
+}
+
+.modal-footer .btn-primary {
+    background-color: #007bff;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .dashboard-header {
+        padding: 15px 20px;
+    }
+
+    .header-title {
+        font-size: 20px;
+    }
+
+    .logout-button, .back-to-dashboard-button {
+        padding: 6px 12px;
+    }
+
+    .container h2 {
+        font-size: 24px;
+    }
+
+    .table th, .table td {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container h2 {
+        font-size: 20px;
+    }
+
+    .table th, .table td {
+        font-size: 12px;
+    }
+}
+
+/* Custom Modal Styling */
+.modal-content {
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.modal-header {
+    background-color: #007bff; /* Blue background for header */
+    color: white;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 8px 8px 0 0;
+    padding: 1rem;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.btn-close {
+    background-color: transparent;
+    border: none;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-footer {
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.modal-footer .btn {
+    padding: 0.5rem 1.5rem;
+}
+
+/* Customizing the form */
+.form-group label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    border-color: #007bff; /* Blue border when focused */
+    outline: none;
+}
+
+.btn-primary {
+    background-color: #28a745; /* Green background for Add button */
+    border-color: #28a745;
+}
+
+.btn-primary:hover {
+    background-color: #218838; /* Darker green on hover */
+    border-color: #1e7e34;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Gray background for Close button */
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+    border-color: #545b62;
+}
+
+/* For responsiveness */
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 90%; /* Allow modal to take up more width on small screens */
+    }
+}
+
+/* Ensures the modal is centered vertically and horizontally */
+.modal-dialog {
+    display: flex;
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    margin: 0 auto;
+}
+
+/* Additional styling for the modal dialog (if needed) */
+.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px; /* Adjust the modal width if required */
+}
+
+/* Additional styling for modal */
+.modal-dialog {
+    max-width: 600px;
+}
+
+.modal-body {
+    padding: 20px;
+}

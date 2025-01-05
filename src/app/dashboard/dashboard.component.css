@@ -1,0 +1,158 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+/* Apply full height and width for html and body */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+  
+/* Background gradient */
+body {
+    background: linear-gradient(to bottom, #a8e063, #56ccf2); /* Light green to blue gradient */
+    display: flex;
+    flex-direction: column;  /* Stack the header and content vertically */
+    font-family: Arial, sans-serif;
+}
+  
+/* Fixed header */
+.dashboard-header {
+    width: 100%;
+    background-color: #007bff; /* Blue background */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Keep the header on top */
+}
+  
+/* Header title */
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+  
+/* Logout button */
+.logout-button {
+    background-color: #f8f9fa;
+    color: #007bff;
+    padding: 8px 16px;
+    border: 1px solid #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+  
+.logout-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+  
+/* Content section */
+.content {
+    flex-grow: 1;           /* Take up remaining space */
+    margin-top: 80px;       /* Offset the content below the header */
+    padding: 20px;
+    background-color: transparent;
+    overflow-y: auto;       /* Scroll if content overflows */
+    font-size: 16px;
+    line-height: 1.6;
+}
+  
+/* Optional: Style paragraphs in content section */
+.content p {
+    margin-bottom: 15px;
+}
+  
+/* Tile Section Styling */
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px; /* Adjust the space below the content section */
+}
+  
+.tile {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer; /* Make the entire tile clickable */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+  
+.tile:hover {
+    transform: scale(1.05); /* Zoom-in effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slight shadow for hover effect */
+}
+  
+/* Style anchor links within tiles */
+.tile a {
+    color: inherit; /* Inherit text color from parent tile */
+    text-decoration: none; /* Remove default underline */
+    font-weight: bold;
+}
+  
+.tile h2 {
+    font-size: 18px;
+    color: #333;
+}
+  
+.tile p {
+    font-size: 14px;
+    color: #777;
+}
+  
+/* Specific light colors for each tile */
+.tile-contractors {
+    background-color: #d1f7c4; /* Light green */
+}
+
+.tile-pending {
+    background-color: #f8e1f4; /* Light pink */
+}
+
+.tile-creation {
+    background-color: #d1e8e2; /* Light teal */
+}
+
+.tile-reports {
+    background-color: #f9e0b0; /* Light yellow */
+}
+
+.tile-settings {
+    background-color: #e1f0ff; /* Light blue */
+}
+  
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .dashboard-header {
+        padding: 15px 20px;
+    }
+    .header-title {
+        font-size: 20px;
+    }
+    .logout-button {
+        padding: 6px 12px;
+    }
+    .tiles {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+  
+@media (max-width: 480px) {
+    .tiles {
+        grid-template-columns: 1fr;
+    }
+}
