@@ -58,6 +58,10 @@ body {
     background-color: #007bff;
     color: white;
 }
+
+.text-white {
+ color: black;
+}
   
 /* Content section */
 .content {
@@ -104,16 +108,21 @@ body {
     font-weight: bold;
 }
   
-.tile h2 {
+/* Updated: Change color of tile headers to black */
+.tile h2  a {
     font-size: 18px;
-    color: #333;
+    color: #000000 !important; /* Black */
 }
   
 .tile p {
     font-size: 14px;
-    color: #777;
+    color: #1b1919;
 }
-  
+
+a {
+    color: black;
+}
+
 /* Specific light colors for each tile */
 .tile-contractors {
     background-color: #d1f7c4; /* Light green */
