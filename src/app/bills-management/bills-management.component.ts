@@ -69,7 +69,7 @@ export class BillsManagementComponent implements OnInit {
         const blob = new Blob([response], { type: 'application/pdf' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = `Bill-${billNumber}.pdf`;
+        link.download = `${billNumber}.pdf`;
         link.click();
         this.isLoading = false;
       },

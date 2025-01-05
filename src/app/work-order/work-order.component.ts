@@ -24,7 +24,7 @@ export class WorkOrderComponent implements OnInit {
   paymentTerms: number | null = null;
   dueDate: string = '';
   selectedLocation: any = null; 
-  newWorkOrder: { contractor: string; paymentTerms: number | null; dueDate: string; locations: any[] } = {
+  newWorkOrder: { contractor: string | null; paymentTerms: number | null; dueDate: string |null; locations: any[] } = {
     contractor: '',
     paymentTerms: null,
     dueDate: '',
@@ -119,8 +119,15 @@ export class WorkOrderComponent implements OnInit {
 
       this.workOrderService.addWorkOrder(newWorkOrder).subscribe(
         (response) => {
+          
           this.loadWorkOrders();
           this.modalRef?.close(); // Close modal
+          this.newWorkOrder = {
+            contractor: null,
+            paymentTerms: null,
+            dueDate: null,
+            locations: []
+          };
         },
         (error) => {
           console.error('Error adding work order:', error);
