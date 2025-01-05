@@ -29,10 +29,10 @@ jobs:
         run: docker pull vinaybabu3962/work-order-management-web-service:latest
 
       - name: Delete old container if exists
-        run: docker rm -f nodejs-app-container || true
+        run: docker rm -f web-app-container || true
 
       - name: Run Docker container
-        run: docker run -d -p 4200:80 --name nodejs-app-container vinaybabu3962/work-order-management-web-service
+        run: docker run -d -p 4200:80 --name web-app-container vinaybabu3962/work-order-management-web-service
       
       - name: List Docker images
         run: docker images
